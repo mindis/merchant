@@ -5,6 +5,7 @@
     <tr>
       <th>Title</th>
       <th>Price</th>
+      <th>Stock</th>
       <th>Description</th>
       <th>Image url</th>
       <th></th>
@@ -23,6 +24,7 @@
           </span><%= product.description %>
         </td>
         <td><%= print_price(product.price) %></td>
+        <td><%= print_stock(product.stock) %></td>
       </tr>
     <% end %>
   </tbody>
