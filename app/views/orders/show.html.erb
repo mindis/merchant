@@ -20,4 +20,14 @@
     <th>Unit Price</th>
     <th>Subtotal</th>
   </tr>
+
+  <% @order.order_items.each do |item| %>
+  <tr>
+    <td></td>
+    <td><%= item.product.title %></td>
+    <td><%= item.quantity %></td>
+    <td><%= item.product.price %></td>
+    <td>
+  </td>
+  <% end %>
 </table>
