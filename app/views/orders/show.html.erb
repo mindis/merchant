@@ -22,6 +22,7 @@
   </tr>
   <tr>
     <% @order.order_items.each do |item| %>
+      <td><%= image_tag "products/#{item.product.image_url}" %></td>
       <td><%= item.product.title %></td>
       <td><%= item.quantity %></td>
       <td><%= print_price(item.product.price) %></td>
