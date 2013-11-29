@@ -20,7 +20,6 @@
             <%= link_to product.title, product_path(product)%>
           </span>
         </td>
-
         <td><%= product.description %></td>
         <td><%= image_tag "products/#{product.image_url}" %></td>  
         <td><%= print_price(product.price) %></td>
