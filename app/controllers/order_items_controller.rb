@@ -1,6 +1,6 @@
 class OrderItemsController < ApplicationController
   before_action :load_order, only: [:create]
-  before_action :set_order_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_order_item, only: [:show, :edit, :destroy]
 
   # GET /order_items/1/edit
   def edit
@@ -25,9 +25,14 @@ class OrderItemsController < ApplicationController
   # PATCH/PUT /order_items/1
   # PATCH/PUT /order_items/1.json
   def update
+    @order_item = OrderItem.find(params[:id])
     respond_to do |format|
-      if @order_item.update(order_item_params)
-        format.html { redirect_to @order_item.order, notice: 'Order item was successfully updated.' }
+      if @order_item_params[:quantity].to_i == 0
+        @order_item.destroy
+        format.html { redirect_to @order_item.order, notice: 'Item was succesfully deleted from your cart.' }
+        format.json { head :no_content }
+      elsif  @order_item.update(order_item_params)
+        format.html { redirect_to @order_item.order, notice:'Successfully updated the order item.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
