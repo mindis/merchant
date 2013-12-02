@@ -9,4 +9,18 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Merchant::Application.config.secret_key_base = 'ff56bf0a31805725520e53e9fad1580631bb0d770491a4dd56e7a12a06c3c877afa661fda4149ff64843b83ca7edc700347cdd18846d184303161f23a62e6484'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+Merchant::Application.config.secret_key_base = secure_token
