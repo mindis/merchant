@@ -10,6 +10,8 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
+require 'securerandom'
+
 def secure_token
   token_file = Rails.root.join('.secret')
   if File.exist?(token_file)
